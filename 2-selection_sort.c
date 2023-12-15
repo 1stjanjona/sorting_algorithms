@@ -7,28 +7,28 @@
 */
 void selection_sort(int *array, size_t size)
 {
-	int *pass, *min;
-	size_t n = 0, d = n + 1;
+	int *min, temp;
+	size_t n, d;
 
 	if (!array || size < 2)
 	{
 		return;
 	}
-	for (; n < size - 1; n++)
+	for (n = 0; n < size - 1; n++)
 	{
 		min = array + n;
-		for (; d < size; d++)
+		for (d = n + 1; d < size; d++)
 		{
 			if (array[d] < *min)
 			{
 				min = array + d;
 			}
 		}
-		if ((array + n) != min)
+		if (min != array + n)
 		{
-			pass = array + n;
+			temp = array[n];
 			array[n] = *min;
-			*min = *pass;
+			*min = temp;
 			print_array(array, size);
 		}
 	}
