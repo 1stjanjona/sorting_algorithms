@@ -8,17 +8,16 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *prev, *node, *pass;
 
-	node = (*list)->next;
-
 	if (!list || !*list || !(*list)->next)
 	{
 		return;
 	}
+	node = (*list)->next;
 	while (node)
 	{
 		pass = node;
 		prev = node->prev;
-		while (prev && pass->n < prev->n)
+		while (prev && (pass->n < prev->n))
 		{
 			if (pass->next)
 			{
@@ -30,12 +29,12 @@ void insertion_sort_list(listint_t **list)
 			{
 				prev->prev->next = pass;
 			}
+			else
+			{
+				(*list) = pass;
+			}
 			prev->prev = pass;
 			pass->next = prev;
-			if (prev == *list)
-			{
-				*list = pass;
-			}
 			print_list(*list);
 			prev = pass->prev;
 		}
